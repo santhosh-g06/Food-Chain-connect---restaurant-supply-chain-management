@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/food")
@@ -36,5 +37,13 @@ public class FoodController {
     @GetMapping("/urgent")
     public ResponseEntity<List<FoodItem>> getUrgentFood() {
         return ResponseEntity.ok(foodService.getUrgentDonations());
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<FoodItem> updateStatus(
+        @PathVariable Long id,
+        @RequestBody Map<String, String> body) {
+    FoodItem updated = foodService.updateStatus(id, body.get("status"));
+    return ResponseEntity.ok(updated);
     }
 }
