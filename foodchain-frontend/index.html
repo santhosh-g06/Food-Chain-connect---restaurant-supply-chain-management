@@ -482,6 +482,254 @@
       .nav-tab { padding: 6px 10px; font-size: 0.8rem; }
       .page { padding: 1.5rem 1rem; }
     }
+
+    /* ============================================================
+       LOGIN PAGE
+    ============================================================ */
+    .login-root {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--cream);
+    }
+    @media (max-width: 768px) {
+      .login-root { grid-template-columns: 1fr; }
+      .login-panel { display: none; }
+    }
+
+    /* Left decorative panel */
+    .login-panel {
+      background: var(--forest);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-panel::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: rgba(82,183,136,0.12);
+      top: -80px; right: -120px;
+    }
+    .login-panel::after {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(244,162,97,0.10);
+      bottom: 60px; left: -60px;
+    }
+    .login-panel-logo {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    .login-panel h1 {
+      font-family: var(--font-head);
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+    .login-panel h1 em {
+      font-style: normal;
+      color: var(--saffron);
+    }
+    .login-panel p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 320px;
+      position: relative; z-index: 1;
+    }
+    .login-roles-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .login-role-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      width: fit-content;
+    }
+
+    /* Right form panel */
+    .login-form-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      animation: fadeUp 0.5s ease;
+    }
+    .login-box-header {
+      margin-bottom: 2rem;
+    }
+    .login-box-header h2 {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--forest);
+      letter-spacing: -0.03em;
+    }
+    .login-box-header p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
+
+    /* Role selector pills */
+    .role-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .role-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 12px 8px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--cream);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+    .role-pill:hover {
+      border-color: var(--mint);
+      background: #fff;
+    }
+    .role-pill.selected {
+      border-color: var(--forest);
+      background: var(--forest);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(26,58,42,0.22);
+    }
+    .role-pill-icon { font-size: 1.5rem; line-height: 1; }
+    .role-pill-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .role-pill.selected .role-pill-label { color: rgba(255,255,255,0.9); }
+
+    /* Login form fields */
+    .login-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 1.5rem; }
+    .login-input-wrap { position: relative; }
+    .login-input-wrap .login-icon {
+      position: absolute;
+      left: 13px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .login-input-wrap input {
+      width: 100%;
+      padding: 11px 14px 11px 38px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    .login-input-wrap input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 3px rgba(82,183,136,0.18);
+    }
+
+    /* Error shake */
+    .login-error {
+      background: #fef2f2;
+      border: 1.5px solid #fecaca;
+      border-radius: 9px;
+      padding: 10px 14px;
+      font-size: 0.87rem;
+      color: var(--urgent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: shake 0.35s ease;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-6px); }
+      40%      { transform: translateX(6px); }
+      60%      { transform: translateX(-4px); }
+      80%      { transform: translateX(4px); }
+    }
+
+    /* Nav user chip */
+    .nav-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-user-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 5px 12px 5px 5px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .nav-user-avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--saffron);
+      color: var(--forest);
+      font-weight: 800;
+      font-size: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logout {
+      padding: 5px 13px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-logout:hover {
+      background: rgba(220,38,38,0.25);
+      border-color: rgba(220,38,38,0.4);
+      color: #fca5a5;
+    }
   </style>
 </head>
 <body>
@@ -495,6 +743,147 @@
   // CONFIG — Change this to your Spring Boot server URL
   // ============================================================
   const API_BASE = 'http://localhost:8080/api/food';
+
+  // ============================================================
+  // AUTH — Client-side credentials (purely frontend, drives routing)
+  // Roles: 'restaurant' | 'ngo' | 'admin'
+  // ============================================================
+  const LOGIN_KEY = 'foodchain_user';
+
+  const CREDENTIALS = [
+    { name: 'Restaurant One', password: 'rest123',  role: 'restaurant' },
+    { name: 'Restaurant Two', password: 'rest456',  role: 'restaurant' },
+    { name: 'NGO Chennai',    password: 'ngo123',   role: 'ngo'        },
+    { name: 'NGO Tambaram',   password: 'ngo456',   role: 'ngo'        },
+    { name: 'Admin',          password: 'admin123', role: 'admin'      },
+  ];
+
+  const ROLE_META = {
+    restaurant: { icon: '🍽️', label: 'Restaurant', page: 'restaurant' },
+    ngo:        { icon: '🌱', label: 'NGO',        page: 'ngo'        },
+    admin:      { icon: '📊', label: 'Admin',      page: 'admin'      },
+  };
+
+  // ============================================================
+  // LOGIN PAGE COMPONENT
+  // ============================================================
+  function LoginPage({ onLogin }) {
+    const [role,     setRole]     = useState('restaurant');
+    const [name,     setName]     = useState('');
+    const [password, setPassword] = useState('');
+    const [error,    setError]    = useState('');
+    const [loading,  setLoading]  = useState(false);
+
+    function handleSubmit() {
+      if (!name.trim())     { setError('Please enter your name.');     return; }
+      if (!password.trim()) { setError('Please enter your password.'); return; }
+      setLoading(true);
+      setError('');
+      setTimeout(() => {
+        const match = CREDENTIALS.find(
+          c => c.role === role &&
+               c.name.toLowerCase() === name.trim().toLowerCase() &&
+               c.password === password.trim()
+        );
+        if (match) {
+          const user = { name: match.name, role: match.role };
+          localStorage.setItem(LOGIN_KEY, JSON.stringify(user));
+          onLogin(user);
+        } else {
+          setError('Incorrect name or password. Try again.');
+          setLoading(false);
+        }
+      }, 600);
+    }
+
+    function handleKeyDown(e) { if (e.key === 'Enter') handleSubmit(); }
+
+    const meta = ROLE_META[role];
+
+    return (
+      <div className="login-root">
+        {/* Left decorative panel */}
+        <div className="login-panel">
+          <div className="login-panel-logo">🌾</div>
+          <h1>FoodChain<br /><em>Connect</em></h1>
+          <p>Reducing food waste by connecting restaurants with NGOs — making every meal count before it is too late.</p>
+          <div className="login-roles-preview">
+            <div className="login-role-chip">🍽️ &nbsp;Restaurants list surplus food</div>
+            <div className="login-role-chip">🌱 &nbsp;NGOs claim urgent donations</div>
+            <div className="login-role-chip">📊 &nbsp;Admins track system health</div>
+          </div>
+        </div>
+
+        {/* Right form panel */}
+        <div className="login-form-wrap">
+          <div className="login-box">
+            <div className="login-box-header">
+              <h2>Welcome back</h2>
+              <p>Select your role and sign in to continue.</p>
+            </div>
+
+            {/* Role picker */}
+            <div className="role-pills">
+              {Object.entries(ROLE_META).map(([key, m]) => (
+                <button
+                  key={key}
+                  className={`role-pill ${role === key ? 'selected' : ''}`}
+                  onClick={() => { setRole(key); setError(''); setName(''); setPassword(''); }}
+                >
+                  <span className="role-pill-icon">{m.icon}</span>
+                  <span className="role-pill-label">{m.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {error && (
+              <div className="login-error"><span>⚠️</span> {error}</div>
+            )}
+
+            <div className="login-fields">
+              <div className="login-input-wrap">
+                <span className="login-icon">👤</span>
+                <input
+                  type="text"
+                  placeholder={`${meta.label} name`}
+                  value={name}
+                  onChange={e => { setName(e.target.value); setError(''); }}
+                  onKeyDown={handleKeyDown}
+                  autoFocus
+                />
+              </div>
+              <div className="login-input-wrap">
+                <span className="login-icon">🔒</span>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={e => { setPassword(e.target.value); setError(''); }}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+            </div>
+
+            <button
+              className="btn btn-primary"
+              style={{ width: '100%', padding: '13px', justifyContent: 'center', fontSize: '1rem' }}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? '⏳ Signing in…' : `Sign in as ${meta.label} →`}
+            </button>
+
+            <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--parchment)', borderRadius: '10px', fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.7 }}>
+              <strong style={{ color: 'var(--forest)', display: 'block', marginBottom: '4px' }}>Demo credentials</strong>
+              🍽️ Restaurant One / rest123<br />
+              🌱 NGO Chennai &nbsp;&nbsp;&nbsp;/ ngo123<br />
+              📊 Admin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ admin123
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // ============================================================
   // API SERVICE
@@ -736,8 +1125,6 @@
           <p>List surplus food for NGOs to claim before it goes to waste.</p>
         </div>
 
-        <ApiConfigBanner />
-
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', alignItems:'start'}}>
           {/* Form */}
           <div className="card">
@@ -862,8 +1249,6 @@
           <p>Browse available donations. Urgent items expire within 12 hours.</p>
         </div>
 
-        <ApiConfigBanner />
-
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.25rem', flexWrap:'wrap', gap:'10px'}}>
           <div className="section-tabs" style={{marginBottom:0, borderBottom:'none'}}>
             <button className={`section-tab ${tab==='all'?'active':''}`} onClick={()=>setTab('all')}>
@@ -949,9 +1334,6 @@
           <h1>📊 Admin <em>Overview</em></h1>
           <p>System-wide statistics and all food listings.</p>
         </div>
-
-        <ApiConfigBanner />
-
         {loading ? <div className="spinner" /> : (
           <>
             <div className="stats-grid">
@@ -1021,29 +1403,49 @@
       </div>
     );
   }
-
   // ============================================================
-  // API CONFIG BANNER
-  // ============================================================
-  function ApiConfigBanner() {
-    return (
-      <div className="config-banner">
-        <span>⚙️</span>
-        <span>
-          <strong>Backend:</strong> Make sure your Spring Boot app is running on <code>localhost:8080</code>. 
-          To change the URL, edit <code>API_BASE</code> at the top of this file.
-        </span>
-      </div>
-    );
-  }
-
-  // ============================================================
-  // ROOT APP
+  // ROOT APP — login-aware, role-locked navigation
   // ============================================================
   function App() {
-    const [page, setPage]         = useState('restaurant');
+    // Restore session from localStorage on first render
+    const [user, setUser] = useState(() => {
+      try {
+        const stored = localStorage.getItem(LOGIN_KEY);
+        return stored ? JSON.parse(stored) : null;
+      } catch { return null; }
+    });
+
     const [apiOnline, setApiOnline] = useState(null);
-    const { toasts, add: toast }  = useToasts();
+    const { toasts, add: toast }    = useToasts();
+
+    // Derive the correct page from the logged-in role
+    const rolePage = user ? ROLE_META[user.role].page : null;
+    const [page, setPage] = useState(rolePage);
+
+    // When user logs in, jump straight to their dashboard
+    function handleLogin(u) {
+      setUser(u);
+      setPage(ROLE_META[u.role].page);
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(LOGIN_KEY);
+      setUser(null);
+      setPage(null);
+      setApiOnline(null);
+    }
+
+    // Not logged in → show login screen only
+    if (!user) {
+      return (
+        <>
+          <LoginPage onLogin={handleLogin} />
+          <ToastZone toasts={toasts} />
+        </>
+      );
+    }
+
+    const meta = ROLE_META[user.role];
 
     return (
       <>
@@ -1053,29 +1455,53 @@
             <span className="nav-logo">🌾</span>
             FoodChain <span>Connect</span>
           </div>
+
+          {/* Navigation: only the tab(s) the role is allowed to see */}
           <div className="nav-tabs">
-            {[
-              { id:'restaurant', label:'🍽️ Restaurant' },
-              { id:'ngo',        label:'🌱 NGO'        },
-              { id:'admin',      label:'📊 Admin'      },
-            ].map(t => (
-              <button
-                key={t.id}
-                className={`nav-tab ${page===t.id?'active':''}`}
-                onClick={() => setPage(t.id)}
-              >
-                {t.label}
-              </button>
-            ))}
+            {/* Restaurant & NGO see only their own single tab (no cross-access).
+                Admin sees all three for monitoring purposes. */}
+            {user.role === 'admin'
+              ? [
+                  { id:'restaurant', label:'🍽️ Restaurant' },
+                  { id:'ngo',        label:'🌱 NGO'        },
+                  { id:'admin',      label:'📊 Admin'      },
+                ].map(t => (
+                  <button
+                    key={t.id}
+                    className={`nav-tab ${page === t.id ? 'active' : ''}`}
+                    onClick={() => setPage(t.id)}
+                  >
+                    {t.label}
+                  </button>
+                ))
+              : (
+                  // Single locked tab for restaurant / ngo
+                  <button className="nav-tab active">
+                    {meta.icon} {meta.label}
+                  </button>
+                )
+            }
           </div>
-          <div className="nav-status">
-            <div className={`status-dot ${apiOnline===true?'online':''}`} />
-            {apiOnline === true  ? 'Backend Online' :
-             apiOnline === false ? 'Backend Offline' : 'Not checked'}
+
+          {/* Right side: user chip + backend status + logout */}
+          <div className="nav-user">
+            <div className="nav-user-chip">
+              <div className="nav-user-avatar">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+              <span>{user.name}</span>
+            </div>
+            <div className="nav-status" style={{ marginLeft: '6px' }}>
+              <div className={`status-dot ${apiOnline === true ? 'online' : ''}`} />
+              {apiOnline === true ? 'Online' : apiOnline === false ? 'Offline' : '—'}
+            </div>
+            <button className="nav-logout" onClick={handleLogout}>
+              ↩ Logout
+            </button>
           </div>
         </nav>
 
-        {/* PAGES */}
+        {/* PAGES — role-locked rendering */}
         {page === 'restaurant' && <RestaurantPage toast={toast} onApiStatus={setApiOnline} />}
         {page === 'ngo'        && <NgoPage        toast={toast} onApiStatus={setApiOnline} />}
         {page === 'admin'      && <AdminPage      toast={toast} onApiStatus={setApiOnline} />}
