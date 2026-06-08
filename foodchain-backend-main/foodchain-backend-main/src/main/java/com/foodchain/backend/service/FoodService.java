@@ -22,15 +22,17 @@ public class FoodService {
         return foodRepository.findByStatus("AVAILABLE");
     }
 
-    // THE SMART FEATURE LOGIC
+    public FoodItem updateStatus(Long id, String status) {
+    FoodItem item = foodRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Item not found"));
+    item.setStatus(status);
+    return foodRepository.save(item);
+    }
+    
     public List<FoodItem> getUrgentDonations() {
-        // 1. Get the exact time right now
+        
         LocalDateTime now = LocalDateTime.now();
-        
-        // 2. Set the "Urgency Window" (e.g., expiring in the next 12 hours)
         LocalDateTime urgentThreshold = now.plusHours(12);
-        
-        // 3. Ask Azure for only those specific items, sorted so the most urgent is at the top
         return foodRepository.findByStatusAndExpiryDateBetweenOrderByExpiryDateAsc(
                 "AVAILABLE", 
                 now, 
